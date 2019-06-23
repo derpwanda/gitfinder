@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import Navigation from "./components/layout/Navigation";
 import "./App.css";
 
 class App extends Component {
-    //lifecyle method
     render() {
         return (
             <div className='App'>
-                <h1>stand in</h1>
+                <Navigation title='Github Finder' icon='fab fa-github' />
             </div>
         );
     }
