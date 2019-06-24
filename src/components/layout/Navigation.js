@@ -12,7 +12,7 @@ const Navigation = ({ icon, title }) => {
 };
 
 Navigation.defaultProps = {
-    title: "Github Finder dP",
+    title: "Github Finder...",
     icon: "fas fa-angle-double-right"
 };
 
