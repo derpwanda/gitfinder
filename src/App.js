@@ -9,6 +9,16 @@ import About from "./components/pages/About";
 import axios from "axios";
 import "./App.css";
 
+let githubClientId;
+let githubClientSecret;
+if (process.env.NODE_ENV !== "production") {
+    githubClientId = process.env.REACT_APP_GH_C_ID;
+    githubClientSecret = process.env.REACT_APP_GH_C_SECRET;
+} else {
+    githubClientId = process.env.GH_C_ID;
+    githubClientSecret = process.env.GH_C_SECRET;
+}
+
 class App extends Component {
     state = {
         users: [],
@@ -22,9 +32,7 @@ class App extends Component {
         this.setState({ loading: true }); //spinner
 
         const res = await axios.get(
-            `https://api.github.com/search/users?q=${text}&client_id=${
-                process.env.REACT_APP_GH_C_ID
-            }&client_secret=${process.env.REACT_APP_GH_C_SECRET}`
+            `https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`
         );
 
         //after the response/res
@@ -38,9 +46,7 @@ class App extends Component {
         this.setState({ loading: true }); //spinner
 
         const res = await axios.get(
-            `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
-                process.env.REACT_APP_GH_C_ID
-            }&client_secret=${process.env.REACT_APP_GH_C_SECRET}`
+            `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`
         );
 
         //after the response/res
@@ -54,9 +60,7 @@ class App extends Component {
         this.setState({ loading: true }); //spinner
 
         const res = await axios.get(
-            `https://api.github.com/users/${username}?client_id=${
-                process.env.REACT_APP_GH_C_ID
-            }&client_secret=${process.env.REACT_APP_GH_C_SECRET}`
+            `https://api.github.com/users/${username}?client_id=${githubClientId}&client_secret=${githubClientSecret}`
         );
 
         //after the response/res
