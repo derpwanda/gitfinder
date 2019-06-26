@@ -1,26 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-export class Navigation extends Component {
-    static defaultProps = {
-        title: "Github Finder dP",
-        icon: "fas fa-angle-double-right"
-    };
+const Navigation = ({ icon, title }) => {
+    return (
+        <nav className='navbar bg-primary'>
+            <h1>
+                <i className={icon} /> {title}
+            </h1>
 
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        icon: PropTypes.string.isRequired
-    };
+            <ul>
+                <li>
+                    <Link to='/'>Home</Link>
+                </li>
+                <li>
+                    <Link to='/about'>About</Link>
+                </li>
+            </ul>
+        </nav>
+    );
+};
 
-    render() {
-        return (
-            <nav className='navbar bg-primary'>
-                <h1>
-                    <i className={this.props.icon} /> {this.props.title}
-                </h1>
-            </nav>
-        );
-    }
-}
+Navigation.defaultProps = {
+    title: "Github Finder...",
+    icon: "fas fa-angle-double-right"
+};
+
+Navigation.propTypes = {
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired
+};
 
 export default Navigation;
